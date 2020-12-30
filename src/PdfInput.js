@@ -17,15 +17,19 @@ const PdfInput = () => {
     gender: "",
   });
 
+  // Onchange handler for multiple input elements
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 
+  // Destructuring of variables from state
   const { fName, lName, email, phone, salary, address, department, year, age, gender } = user;
 
   const onSubmit = (e) => {
     e.preventDefault();
+    // check if input fields are empty
     if (fName === "" || lName === "" || email === "" || phone === "" || salary === "") {
       M.toast({ html: "Please fill all fields" });
     } else {
+      // Add user document to database
       db.collection("users")
         .add({
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -43,8 +47,10 @@ const PdfInput = () => {
         .then(() => console.log("Data Successfully added"))
         .catch((err) => console.log(`Error occured ${err}`));
 
+      // Message Toast
       M.toast({ html: `${fName} ${lName} was successfully added` });
 
+      // Clear Input Fields
       setUser({
         fName: "",
         lName: "",

@@ -6,6 +6,7 @@ import poppinsBold from "./fonts/Poppins-Bold.ttf";
 import poppinsSemiBold from "./fonts/Poppins-SemiBold.ttf";
 
 const Pdf = ({ data }) => {
+  // Delimit numbers above 1000 e.g. 1,000
   const commas = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (

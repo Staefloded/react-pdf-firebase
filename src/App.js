@@ -10,6 +10,7 @@ import Pdf from "./Pdf";
 
 function App() {
   useEffect(() => {
+    // Initialize materialise javascript
     M.AutoInit();
   }, []);
 
