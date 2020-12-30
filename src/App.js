@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, useEffect } from "react";
+import "./App.css";
+import Nav from "./Nav";
+import Dashboard from "./Dashboard";
+import PdfInput from "./PdfInput";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "materialize-css/dist/css/materialize.min.css";
+import M from "materialize-css/dist/js/materialize.min.js";
+import Pdf from "./Pdf";
 
 function App() {
+  useEffect(() => {
+    M.AutoInit();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Fragment>
+        <Nav />
+        <div className="container">
+          <Switch>
+            <Route path="/pdf" component={Pdf} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route exact path="/" component={PdfInput} />
+          </Switch>
+        </div>
+      </Fragment>
+    </Router>
   );
 }
 
